@@ -19,18 +19,10 @@ struct node {
 	list<node*> neighbors;
 	bool visited;
 	int assigned_color;
-	node(int val) {
-		value = val;
-		visited = false;
-	}
+	node(int val):value(val), visited(false) {}
 };
 
-class graph {
-public:
-	list<node*> all_nodes;
-};
-
-void graph_coloring(graph input_graph, vector<int> color) {
+void graph_coloring(const list<node*>& input_graph,const vector<int>& color) {
 	//vector<int> ret;
 
 	list<node*> queue;
@@ -52,16 +44,16 @@ void graph_coloring(graph input_graph, vector<int> color) {
 			}
 		}
 		if (neighbor_color_map.size() != 0) {
-			for (int i = 0; i < color.size(); i++) {
-				if (neighbor_color_map.find(color[i]) != neighbor_color_map.end()) {
+			for (int i = 0; i < colors.size(); i++) {
+				if (neighbor_color_map.find(colors[i]) != neighbor_color_map.end()) {
 					continue;
 				} else {
-					current->assigned_color = color[i];
+					current->assigned_color = colors[i];
 					break;
 				}
 			}
 		}
-		else current->assigned_color = color[0];
+		else current->assigned_color = colors[0];
 	}
 }
 
@@ -110,10 +102,10 @@ int main() {
 	all_nodes.push_back(n4);
 	all_nodes.push_back(n5);
 
-	graph g; g.all_nodes = all_nodes;
+	//graph g; g.all_nodes = all_nodes;
 
-	vector<int> color = { 1, 2, 3, 4 };
-	graph_coloring(g, color);
+	vector<int> colors = { 1, 2, 3, 4 };
+	graph_coloring(all_nodes, color);
 
 	list<node*>::iterator node_it = all_nodes.begin();
 	for (node_it; node_it != all_nodes.end(); node_it++) {
