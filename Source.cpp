@@ -65,43 +65,22 @@ int main() {
 	node* n4 = new node(4);
 	node* n5 = new node(5);
 
-	list<node*> l1;
-	l1.push_back(n2);
-	l1.push_back(n3);
-	l1.push_back(n4);
-
+	list<node*> l1 = {n2, n3, n4};
 	n1->neighbors = l1;
 
-	list<node*> l2;
-	l2.push_back(n4);
-	l2.push_back(n5);
-	l2.push_back(n1);
+	list<node*> l2 = {n4, n5, n1};
 	n2->neighbors = l2;
 
-	list<node*> l3;
-	l3.push_back(n1);
-	l3.push_back(n4);
+	list<node*> l3 = {n1, n4};
 	n3->neighbors = l3;
 
-	list<node*> l4;
-	l4.push_back(n1);
-	l4.push_back(n2);
-	l4.push_back(n3);
-	l4.push_back(n5);
+	list<node*> l4 = {n1, n2, n3, n5};
 	n4->neighbors = l4;
 
-	list<node*> l5;
-	l5.push_back(n2);
-	l5.push_back(n4);
+	list<node*> l5 = {n2, n4};
 	n5->neighbors = l5;
 
-	list<node*> all_nodes;
-	all_nodes.push_back(n1);
-	all_nodes.push_back(n2);
-	all_nodes.push_back(n3);
-	all_nodes.push_back(n4);
-	all_nodes.push_back(n5);
-
+	list<node*> all_nodes = {n1, n2, n3, n4, n5};
 	//graph g; g.all_nodes = all_nodes;
 
 	vector<int> colors = { 1, 2, 3, 4 };
