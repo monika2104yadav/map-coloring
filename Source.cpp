@@ -22,7 +22,7 @@ struct node {
 	node(int val):value(val), visited(false) {}
 };
 
-void graph_coloring(const list<node*>& input_graph,const vector<int>& color) {
+void graph_coloring(const list<node*>& input_graph,const vector<int>& colors) {
 	//vector<int> ret;
 
 	list<node*> queue;
