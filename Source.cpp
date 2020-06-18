@@ -14,15 +14,15 @@
 
 using namespace std;
 
-struct node {
+struct Node {
 	int value;
-	list<node*> neighbors;
+	list<Node*> neighbors;
 	bool visited = false;
 	int assigned_color = 0;
-	node(int val):value(val) {}
+	Node(int val):value(val) {}
 };
 
-void graph_coloring(const list<node*>& input_graph,const vector<int>& colors) {
+void graph_coloring(const list<Node*>& input_graph,const vector<int>& colors) {
 	//vector<int> ret;
 
 	list<node*> queue;
@@ -59,36 +59,36 @@ void graph_coloring(const list<node*>& input_graph,const vector<int>& colors) {
 
 
 int main() {
-	node* n1 = new node(1);
-	node* n2 = new node(2);
-	node* n3 = new node(3);
-	node* n4 = new node(4);
-	node* n5 = new node(5);
+	node* n1 = new Node(1);
+	node* n2 = new Node(2);
+	node* n3 = new Node(3);
+	node* n4 = new Node(4);
+	node* n5 = new Node(5);
 
-	list<node*> l1 = {n2, n3, n4};
+	list<Node*> l1 = {n2, n3, n4};
 	n1->neighbors = l1;
 
-	list<node*> l2 = {n4, n5, n1};
+	list<Node*> l2 = {n4, n5, n1};
 	n2->neighbors = l2;
 
-	list<node*> l3 = {n1, n4};
+	list<Node*> l3 = {n1, n4};
 	n3->neighbors = l3;
 
-	list<node*> l4 = {n1, n2, n3, n5};
+	list<Node*> l4 = {n1, n2, n3, n5};
 	n4->neighbors = l4;
 
-	list<node*> l5 = {n2, n4};
+	list<Node*> l5 = {n2, n4};
 	n5->neighbors = l5;
 
-	list<node*> all_nodes = {n1, n2, n3, n4, n5};
+	list<Node*> all_nodes = {n1, n2, n3, n4, n5};
 	//graph g; g.all_nodes = all_nodes;
 
 	vector<int> colors = { 1, 2, 3, 4 };
 	graph_coloring(all_nodes, color);
 
-	auto node_it = std::begin(all_nodes);
-	for (node_it:all_nodes) {
-		cout << (*node_it)->assigned_color << endl;
+	//auto node_it = std::begin(all_nodes);
+	for (node:all_nodes) {
+		cout << (*node)->assigned_color << endl;
 	}
 	cin.get();
 }
