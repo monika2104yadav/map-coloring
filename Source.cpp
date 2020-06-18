@@ -37,16 +37,16 @@ void graph_coloring(const list<const Node*>& input_graph,const vector<int>& colo
 
 		unordered_map<int, int> neighbor_color_map;
 		//list<node*>::iterator neigh_it = current->neighbors.begin();
-		for (neighbor:current->neighbors) {
-			if (neighbor->visited == false) {
+		for (const& neighbor:current->neighbors) {
+			if (!(neighbor->visited)) {
 				queue.push_back(neighbor);
 			}
-			if (neighbor->visited == true) {
+			if (neighbor->visited) {
 				neighbor_color_map.insert({ neighbor->assigned_color, neighbor->assigned_color });
 			}
 		}
 		if (neighbor_color_map.size() != 0) {
-			for (color:colors) {
+			for (const& color:colors) {
 				if (neighbor_color_map.find(color) != neighbor_color_map.end()) {
 					continue;
 				} else {
@@ -89,7 +89,7 @@ int main() {
 	graph_coloring(all_nodes, color);
 
 	//auto node_it = std::begin(all_nodes);
-	for (node:all_nodes) {
+	for (const& node:all_nodes) {
 		cout << (node)->assigned_color << endl;
 	}
 	cin.get();
