@@ -88,7 +88,7 @@ int main() {
 
 	//auto node_it = std::begin(all_nodes);
 	for (node:all_nodes) {
-		cout << (*node)->assigned_color << endl;
+		cout << (node)->assigned_color << endl;
 	}
 	cin.get();
 }
