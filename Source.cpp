@@ -16,7 +16,7 @@ using namespace std;
 
 struct Node {
 	int value;
-	list<const Node*> neighbors;
+	const list<const Node*> neighbors;
 	bool visited = false;
 	int assigned_color = 0;
 	Node(int val):value(val) {}
@@ -25,7 +25,7 @@ struct Node {
 void graph_coloring(const list<const Node*>& input_graph,const vector<int>& colors) {
 	//vector<int> ret;
 
-	if (input_graph.size() == 0) return;
+	if (input_graph.empty()) return;
 	
 	list<const Node*> queue;
 	queue.push_back(input_graph.all_nodes.front());
@@ -37,16 +37,15 @@ void graph_coloring(const list<const Node*>& input_graph,const vector<int>& colo
 
 		unordered_map<int, int> neighbor_color_map;
 		//list<node*>::iterator neigh_it = current->neighbors.begin();
-		for (const& neighbor:current->neighbors) {
+		for (const auto& neighbor:current->neighbors) {
 			if (!(neighbor->visited)) {
 				queue.push_back(neighbor);
-			}
-			if (neighbor->visited) {
+			} else {
 				neighbor_color_map.insert({ neighbor->assigned_color, neighbor->assigned_color });
 			}
 		}
-		if (neighbor_color_map.size() != 0) {
-			for (const& color:colors) {
+		if (neighbor_color_map.empty()) {
+			for (const auto& color:colors) {
 				if (neighbor_color_map.find(color) != neighbor_color_map.end()) {
 					continue;
 				} else {
@@ -61,35 +60,35 @@ void graph_coloring(const list<const Node*>& input_graph,const vector<int>& colo
 
 
 int main() {
-	node* n1 = new Node(1);
-	node* n2 = new Node(2);
-	node* n3 = new Node(3);
-	node* n4 = new Node(4);
-	node* n5 = new Node(5);
+	const node* n1 = new Node(1);
+	const node* n2 = new Node(2);
+	const node* n3 = new Node(3);
+	const node* n4 = new Node(4);
+	const node* n5 = new Node(5);
 
-	list<Node*> l1 = {n2, n3, n4};
+	const list<const Node*> l1 = {n2, n3, n4};
 	n1->neighbors = l1;
 
-	list<Node*> l2 = {n4, n5, n1};
+	const list<const Node*> l2 = {n4, n5, n1};
 	n2->neighbors = l2;
 
-	list<Node*> l3 = {n1, n4};
+	const list<const Node*> l3 = {n1, n4};
 	n3->neighbors = l3;
 
-	list<Node*> l4 = {n1, n2, n3, n5};
+	const list<const Node*> l4 = {n1, n2, n3, n5};
 	n4->neighbors = l4;
 
-	list<Node*> l5 = {n2, n4};
+	const list<const Node*> l5 = {n2, n4};
 	n5->neighbors = l5;
 
-	list<Node*> all_nodes = {n1, n2, n3, n4, n5};
+	const list<const Node*> all_nodes = {n1, n2, n3, n4, n5};
 	//graph g; g.all_nodes = all_nodes;
 
 	vector<int> colors = { 1, 2, 3, 4 };
 	graph_coloring(all_nodes, color);
 
 	//auto node_it = std::begin(all_nodes);
-	for (const& node:all_nodes) {
+	for (const auto& node:all_nodes) {
 		cout << (node)->assigned_color << endl;
 	}
 	cin.get();
