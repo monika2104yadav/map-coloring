@@ -17,9 +17,9 @@ using namespace std;
 struct node {
 	int value;
 	list<node*> neighbors;
-	bool visited;
-	int assigned_color;
-	node(int val):value(val), visited(false) {}
+	bool visited = false;
+	int assigned_color = 0;
+	node(int val):value(val) {}
 };
 
 void graph_coloring(const list<node*>& input_graph,const vector<int>& colors) {
@@ -107,8 +107,8 @@ int main() {
 	vector<int> colors = { 1, 2, 3, 4 };
 	graph_coloring(all_nodes, color);
 
-	list<node*>::iterator node_it = all_nodes.begin();
-	for (node_it; node_it != all_nodes.end(); node_it++) {
+	auto node_it = std::begin(all_nodes);
+	for (node_it:all_nodes) {
 		cout << (*node_it)->assigned_color << endl;
 	}
 	cin.get();
