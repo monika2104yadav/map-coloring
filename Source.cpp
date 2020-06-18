@@ -25,6 +25,8 @@ struct Node {
 void graph_coloring(const list<Node*>& input_graph,const vector<int>& colors) {
 	//vector<int> ret;
 
+	if (input_graph.size() == 0) return;
+	
 	list<node*> queue;
 	queue.push_back(input_graph.all_nodes.front());
 
@@ -33,19 +35,19 @@ void graph_coloring(const list<Node*>& input_graph,const vector<int>& colors) {
 		queue.pop_front();
 		current->visited = true;
 
-		map<int, int> neighbor_color_map;
-		list<node*>::iterator neigh_it = current->neighbors.begin();
-		for (neigh_it; neigh_it != current->neighbors.end(); ++neigh_it) {
-			if ((*neigh_it)->visited == false) {
-				queue.push_back(*neigh_it);
+		unordered_map<int, int> neighbor_color_map;
+		//list<node*>::iterator neigh_it = current->neighbors.begin();
+		for (neighbor:current->neighbors) {
+			if (neighbor->visited == false) {
+				queue.push_back(neighbor);
 			}
-			if ((*neigh_it)->visited == true) {
-				neighbor_color_map.insert({ (*neigh_it)->assigned_color, (*neigh_it)->assigned_color });
+			if (neighbor->visited == true) {
+				neighbor_color_map.insert({ neighbor->assigned_color, neighbor->assigned_color });
 			}
 		}
 		if (neighbor_color_map.size() != 0) {
-			for (int i = 0; i < colors.size(); i++) {
-				if (neighbor_color_map.find(colors[i]) != neighbor_color_map.end()) {
+			for (color:colors) {
+				if (neighbor_color_map.find(color) != neighbor_color_map.end()) {
 					continue;
 				} else {
 					current->assigned_color = colors[i];
