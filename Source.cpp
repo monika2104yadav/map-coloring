@@ -16,22 +16,22 @@ using namespace std;
 
 struct Node {
 	int value;
-	list<Node*> neighbors;
+	list<const Node*> neighbors;
 	bool visited = false;
 	int assigned_color = 0;
 	Node(int val):value(val) {}
 };
 
-void graph_coloring(const list<Node*>& input_graph,const vector<int>& colors) {
+void graph_coloring(const list<const Node*>& input_graph,const vector<int>& colors) {
 	//vector<int> ret;
 
 	if (input_graph.size() == 0) return;
 	
-	list<node*> queue;
+	list<const Node*> queue;
 	queue.push_back(input_graph.all_nodes.front());
 
 	while (!(queue.empty())) {
-		node* current = queue.front();
+		const Node* current = queue.front();
 		queue.pop_front();
 		current->visited = true;
 
